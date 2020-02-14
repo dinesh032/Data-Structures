@@ -43,6 +43,29 @@ void insertNodeAfter(struct node** head, int n, int data) {
 		prev->next = newNode;
 	}
 }
+//insert in sorted order
+void sortedInsert(struct node** head, int data) {
+	struct node* newNode = (struct node*)malloc(sizeof(struct node));
+	struct node* current = *head;
+	struct node* prev = NULL;
+	newNode->data = data;
+	if (*head == NULL) {	//first insert in the list
+		newNode->next = NULL;
+		*head = newNode;
+	}
+	while (current != NULL && current->data < data) {
+		prev = current;
+		current = current->next;
+	}
+	if (prev == NULL) {	//that means, insert at start of list
+		newNode->next = current;
+		*head = newNode;
+	}
+	else {		//insert in between or end condition
+		prev->next = newNode;
+		newNode->next = current;
+	}
+}
 //Delete a given node in list
 void deleteNode(struct node** head, int n) {
 	struct node* current = *head;
@@ -73,16 +96,62 @@ void printList(struct node* temp) {
 	}
 	cout << endl;
 }
+int countNodes(struct node* temp) {
+	int count = 0;
+	while (temp != NULL) {
+		count++;
+		temp = temp->next;
+	}
+	return count;
+}
+//delete whole list 
+void deleteList(struct node** head) {
+	struct node* current = *head;
+	struct node* next;
+	while (current != NULL) {
+		next = current->next;	//save next node
+		free(current);			//delete current node
+		current = next;			//assign the next node to current for delete again
+		printList(current);
+	}
+	cout << "deleted the whole list.";
+	*head = NULL;
+}
+//split the list in 2 halves
+void frontBackSplit(struct node** head){
+	struct node* front = NULL;
+	struct node* back = NULL;
+	struct node* slow = *head;
+	struct node* fast = *head;
+	if (slow == NULL || slow->next == NULL) {	 //0 or 1 nodes, no need of split
+		front = *head;
+	}
+	while (fast->next != NULL) {	//after end of this, slow is at midway and fast at the end of list
+		fast = fast->next;
+		if (fast->next != NULL) {
+			slow = slow->next;
+			fast = fast->next;
+		}
+	}
+	//now arrange the nodes to get 2 split lists
+	front = *head;
+	back = slow->next;
+	slow->next = NULL;
+	cout << "The split list are, front list: ";
+	printList(front);
+	cout << "back list: ";
+	printList(back);
+}
 //reversing a list
 void reverseList(struct node** head) {
 	struct node* cur = *head;
 	struct node* prev = NULL;
-	struct node* next;
+	struct node* temp;
 	while (cur != NULL) {
-		next = cur->next;
+		temp = cur->next;
 		cur->next = prev;
 		prev = cur;
-		cur = next;
+		cur = temp;
 	}
 	*head = prev;
 }
@@ -104,13 +173,28 @@ int main() {
 	cout << endl << "List after insertions: ";
 	printList(head);
 
-	deleteNode(&head, 9);
+	deleteNode(&head, 9);	//delete a specified node
 	cout << "After deleting node 9: ";
 	printList(head);
 
 	reverseList(&head);
 	cout << "List after reversing: ";
 	printList(head);
+	cout << endl << "No. of nodes in list: " << countNodes(head);	//count function
 
+	cout << endl << "delete the whole list: ";
+	deleteList(&head);
+
+	cout << endl << "sorted insert: ";
+
+	sortedInsert(&head, 5);
+	sortedInsert(&head, 3);
+	sortedInsert(&head, 4);
+	sortedInsert(&head, 9);
+	sortedInsert(&head, 8);
+	sortedInsert(&head, 7);
+	printList(head);
+
+	frontBackSplit(&head);
 	return 0;
 }
