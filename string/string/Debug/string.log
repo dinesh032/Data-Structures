@@ -1,2 +1,5 @@
-﻿  Source.cpp
-  string.vcxproj -> C:\Users\kumar2di\source\repos\string\Debug\string.exe
+﻿  main.cpp
+  strProblems.cpp
+  Generating Code...
+C:\Users\kumar2di\Documents\GitHub\Data-Structures\string\string\strProblems.cpp(59): warning C4715:  'isPalindrome': not all control paths return a value
+  string.vcxproj -> C:\Users\kumar2di\Documents\GitHub\Data-Structures\string\Debug\string.exe

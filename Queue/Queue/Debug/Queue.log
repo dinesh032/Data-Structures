@@ -1,0 +1,6 @@
+﻿  stlQueue.cpp
+C:\Users\kumar2di\Documents\GitHub\Data-Structures\Queue\Queue\stlQueue.cpp(14,15): warning C4305:  'argument': truncation from 'double' to 'float'
+C:\Users\kumar2di\Documents\GitHub\Data-Structures\Queue\Queue\stlQueue.cpp(15,15): warning C4305:  'argument': truncation from 'double' to 'float'
+C:\Users\kumar2di\Documents\GitHub\Data-Structures\Queue\Queue\stlQueue.cpp(16,15): warning C4305:  'argument': truncation from 'double' to 'float'
+C:\Users\kumar2di\Documents\GitHub\Data-Structures\Queue\Queue\stlQueue.cpp(17,15): warning C4305:  'argument': truncation from 'double' to 'float'
+  Queue.vcxproj -> C:\Users\kumar2di\Documents\GitHub\Data-Structures\Queue\Debug\Queue.exe
